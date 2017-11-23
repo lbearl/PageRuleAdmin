@@ -12,6 +12,3 @@ Administration for [CloudFlare](https://www.cloudflare.com) page rules. This cur
 I make extensive use of CloudFlare's page rules for redirects for my side business. Allowing people to administrate the page rules while
 not giving them full access to CloudFlare became rather important for me. This is built to serve a very narrow and specific purpose, but
 the code could be adapted pretty easily to start handling additional page rule types, or additional CloudFlare services.
-
-## Why no security?
-I'm hosting this on an Ubuntu Hyper-V VM runnning on my PC in my home, so the added complexity of adding a proper authentication layer didn't seem worthwhile. 
