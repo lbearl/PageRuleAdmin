@@ -1,5 +1,3 @@
-using System;
-
 namespace PageRuleAdmin.Models
 {
     public class ErrorViewModel

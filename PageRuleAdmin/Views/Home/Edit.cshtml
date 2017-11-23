@@ -1,0 +1,21 @@
+﻿@model EditVM
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Page Rule for @Model.Domain</h2>
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="MatchUrlBlob"></label>
+        <input asp-for="MatchUrlBlob" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ForwardingUrl"></label>
+        <input asp-for="ForwardingUrl" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" />
+    </div>
+    <input type="hidden" asp-for="Domain" />
+    <input type="hidden" asp-for="Id" />
+</form>

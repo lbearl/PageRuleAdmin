@@ -1,0 +1,31 @@
+﻿@model PageRulesVM
+@{
+    ViewData["Title"] = "Rules";
+}
+<h2>Page Rules</h2>
+
+@if (TempData["Message"] != null)
+{
+    <div class="well success">
+        @TempData["Message"]
+    </div>
+}
+
+<p>This page provides a summary of currently configured page rules. Add a new one <a asp-action="Create" asp-route-domain="@Model.Domain">Here</a></p>
+
+<table class="table table-hover table-bordered">
+    <tbody>
+        @for (var i = 0; i < Model.Result.Count; i++)
+        {
+            <tr>
+                <td>
+                    <h3>@Model.Result[i].Targets[0].Constraint.Value</h3>
+                    <p><strong>@Model.Result[i].Actions[0].Id</strong>: <a href="@Model.Result[i].Actions[0].Value.Url">@Model.Result[i].Actions[0].Value.Url</a> (@Model.Result[i].Actions[0].Value.StatusCode)</p>
+
+                </td>
+                <td style="vertical-align: middle;"><a asp-action="Delete" asp-route-id="@Model.Result[i].Id" asp-route-domain="@Model.Domain">[Delete]</a></td>
+                <td style="vertical-align: middle;"><a asp-action="Edit" asp-route-id="@Model.Result[i].Id" asp-route-domain="@Model.Domain">[Edit]</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
