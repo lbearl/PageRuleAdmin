@@ -108,7 +108,7 @@ namespace PageRuleAdmin.Services
 
             var json = JsonConvert.SerializeObject(editVm).Replace("/", "\\/");
 
-            var result = await PerformWebRequest<ApiResponseVM>($"{API_ENDPOINT}/zones/{zoneId}/pagerules/{id}", HttpMethod.Put, json);
+            var result = await PerformWebRequest<ApiResponseVM>($"{API_ENDPOINT}/zones/{zoneId}/pagerules/{id}", new HttpMethod("PATCH"), json);
 
             return result.Success;
         }
