@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using PageRuleAdmin.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,9 @@ namespace PageRuleAdmin.Services
         public async Task<PageRulesVM> GetPageRules(string domain)
         {
             var zoneId = await ResolveZone(domain);
-            return await PerformWebRequest<PageRulesVM>($"{API_ENDPOINT}/zones/{zoneId}/pagerules", HttpMethod.Get);
+            var rules = await PerformWebRequest<PageRulesVM>($"{API_ENDPOINT}/zones/{zoneId}/pagerules", HttpMethod.Get);
+            rules.Result = rules.Result.Where(x => x.Actions.Any(y => y.Id == "forwarding_url")).ToList();
+            return rules;
         }
 
         public async Task<bool> CreatePageRule(string targetDomain, string urlToMatch, string forwardingUrl)

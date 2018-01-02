@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Runtime.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace PageRuleAdmin.Models
 {
@@ -16,6 +18,18 @@ namespace PageRuleAdmin.Models
 
             [JsonProperty(PropertyName = "status_code")]
             public int StatusCode { get; set; }
+
+            [OnError]
+            internal void OnError(StreamingContext context, ErrorContext errorContext)
+            {
+                errorContext.Handled = true;
+            }
+        }
+
+        [OnError]
+        internal void OnError(StreamingContext context, ErrorContext errorContext)
+        {
+            errorContext.Handled = true;
         }
     }
 }
